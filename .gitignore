@@ -1,0 +1,27 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos de PocketMine-MP
+*.log
+crashdumps/
+logs/
+worlds/
+players/
+plugin_data/
+
+# Archivos de configuración local
+config.yml
+protections.yml
+logs.yml
+
+# Archivos temporales
+*.tmp
+*.temp 

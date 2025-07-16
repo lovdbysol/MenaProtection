@@ -1,0 +1,18 @@
+name: MenaProtection
+main: MenaProtection\Main
+version: 1.0.0
+api: 5.0.0
+author: TuNombre
+description: Plugin de protección de áreas usando bloques Mena
+website: https://github.com/tunombre/MenaProtection
+
+permissions:
+  menaprotection.admin:
+    description: Permite usar comandos de administración de MenaProtection
+    default: op
+  menaprotection.give:
+    description: Permite dar bloques Mena a otros jugadores
+    default: op
+  menaprotection.bypass:
+    description: Permite construir en áreas protegidas
+    default: op 
