@@ -17,6 +17,7 @@ namespace MenaProtection;
 use MenaProtection\Commands\MenaCommand;
 use MenaProtection\Events\ProtectionListener;
 use MenaProtection\Managers\ProtectionManager;
+use MenaProtection\MyPlotIntegration;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 
@@ -27,6 +28,9 @@ class Main extends PluginBase {
     
     /** @var Config */
     private Config $config;
+    
+    /** @var MyPlotIntegration */
+    private MyPlotIntegration $myPlotIntegration;
     
     /**
      * Se ejecuta cuando el plugin se habilita
@@ -44,6 +48,9 @@ class Main extends PluginBase {
         
         // Inicializar el gestor de protecciones
         $this->protectionManager = new ProtectionManager($this);
+        
+        // Inicializar integración con MyPlot
+        $this->myPlotIntegration = new MyPlotIntegration($this);
         
         // Registrar eventos
         $this->getServer()->getPluginManager()->registerEvents(
@@ -87,6 +94,15 @@ class Main extends PluginBase {
      */
     public function getPluginConfig(): Config {
         return $this->config;
+    }
+    
+    /**
+     * Obtiene la integración con MyPlot
+     * 
+     * @return MyPlotIntegration
+     */
+    public function getMyPlotIntegration(): MyPlotIntegration {
+        return $this->myPlotIntegration;
     }
     
     /**

@@ -122,6 +122,15 @@ class ProtectionListener implements Listener {
                 $player->sendMessage($this->plugin->getMessage("cannot_build", ["owner" => $protection["owner"]]));
             }
         }
+        
+        // Verificar integración con MyPlot
+        if (!$this->plugin->getMyPlotIntegration()->canBuildInPlot($player, $position)) {
+            $plotInfo = $this->plugin->getMyPlotIntegration()->getPlotInfo($position);
+            if ($plotInfo["owner"] !== null) {
+                $event->cancel();
+                $player->sendMessage($this->plugin->getMessage("cannot_build", ["owner" => $plotInfo["owner"]]));
+            }
+        }
     }
     
     /**
@@ -143,6 +152,15 @@ class ProtectionListener implements Listener {
             if (!$player->hasPermission("menaprotection.bypass")) {
                 $event->cancel();
                 $player->sendMessage($this->plugin->getMessage("cannot_build", ["owner" => $protection["owner"]]));
+            }
+        }
+        
+        // Verificar integración con MyPlot
+        if (!$this->plugin->getMyPlotIntegration()->canBuildInPlot($player, $position)) {
+            $plotInfo = $this->plugin->getMyPlotIntegration()->getPlotInfo($position);
+            if ($plotInfo["owner"] !== null) {
+                $event->cancel();
+                $player->sendMessage($this->plugin->getMessage("cannot_build", ["owner" => $plotInfo["owner"]]));
             }
         }
     }
@@ -169,6 +187,15 @@ class ProtectionListener implements Listener {
                 if (!$player->hasPermission("menaprotection.bypass")) {
                     $event->cancel();
                     $player->sendMessage($this->plugin->getMessage("cannot_build", ["owner" => $protection["owner"]]));
+                }
+            }
+            
+            // Verificar integración con MyPlot para cofres
+            if (!$this->plugin->getMyPlotIntegration()->canBuildInPlot($player, $position)) {
+                $plotInfo = $this->plugin->getMyPlotIntegration()->getPlotInfo($position);
+                if ($plotInfo["owner"] !== null) {
+                    $event->cancel();
+                    $player->sendMessage($this->plugin->getMessage("cannot_build", ["owner" => $plotInfo["owner"]]));
                 }
             }
         }
